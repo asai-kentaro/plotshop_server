@@ -7,7 +7,7 @@ MANIFEST
 docs/_build/
 docs/locale/
 node_modules/
-migrations
+migrations/
 tests/coverage_html/
 tests/.coverage
 build/
