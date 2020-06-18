@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>
+      ID
+    </th>
+    <th>
+      create date
+    </th>
+    <th>
+      status
+    </th>
+  </tr>
+  {% for entry in entries %}
+  <tr>
+    <td>
+      {{ entry.id }}
+    </td>
+    <td>
+      {{ entry.created_at }}
+    </td>
+    <td>
+      {{ entry.status }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>

@@ -1,0 +1,66 @@
+{% extends "codeman/base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+<h1>コード管理</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        title
+      </th>
+      <th>
+        コード編集
+      </th>
+      <th>
+        Coder Studio
+      </th>
+      <th>
+        Analyst Birdseye
+      </th>
+      <th>
+        Designer Dashboard
+      </th>
+      <th>
+        Data Link
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for code in codeelm_list %}
+    <tr>
+      <td>
+        {{ code.id }}
+      </td>
+      <td>
+        {{ code.title }}
+      </td>
+      <td>
+        <a href="code/{{code.id}}/edit">編集</a>
+      </td>
+      <td>
+        <a href="code/{{code.id}}/">{{code.title}}</a>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+      <td>
+        {{ code.codelinks }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4>コード操作</h4>
+<a class="btn btn-primary" href="{% url 'codeman:new' %}">コード作成</a>
+
+
+
+{% endblock %}

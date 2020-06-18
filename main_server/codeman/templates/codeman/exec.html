@@ -1,0 +1,18 @@
+{% extends "codeman/base.html" %}
+{% block content %}
+
+<h1>Exec Code</h1>
+
+<h4>result</h4>
+<h5>res</h5>
+<p>{{exec_res.res}}</p>
+<h5>env_l</h5>
+<p>{{exec_res.env_l}}</p>
+
+<h4>Entries</h4>
+{% include "codeman/entries_table.html" %}
+
+<a href="/codeman/code/{{code_id}}/exec">実行</a>
+<a href="/codeman/">戻る</a>
+
+{% endblock %}

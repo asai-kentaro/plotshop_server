@@ -1,0 +1,87 @@
+{% extends "dataman/base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+<h1>データ管理</h1>
+
+<h3>ファイル一覧</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        ファイル名
+      </th>
+      <th>
+        バージョン
+      </th>
+      <th>
+        コメント
+      </th>
+      <th>
+        リンク
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for datum in file_list %}
+    <tr>
+      <td>
+        {{ datum.id }}
+      </td>
+      <td>
+        <a href="{{ datum.file.url }}">
+          {{ datum.file.name }}
+        </a>
+      </td>
+      <td>
+        {{ datum.version }}
+      </td>
+      <td>
+        {{ datum.remark }}
+      </td>
+      <td>
+        <a href="/dataman/link/view/{{datum.id}}/">リンク</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h3>データチャンク一覧</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        チャンク名
+      </th>
+      <th>
+        バージョン
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for datum in dc_list %}
+    <tr>
+      <td>
+        {{ datum.id }}
+      </td>
+      <td>
+        {{ datum.name }}
+      </td>
+      <th>
+        {{ datum.version }}
+      </th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}

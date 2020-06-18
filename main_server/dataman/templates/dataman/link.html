@@ -1,0 +1,40 @@
+{% extends "dataman/base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+<h1>コードリンク</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        コード名
+      </th>
+      <th>
+        リンク
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for code in code_list %}
+      <tr>
+        <td>
+          {{code.id}}
+        </td>
+        <td>
+          {{code.title}}
+        </td>
+        <td>
+          <a href="/dataman/link/add?dataid={{data_id}}&codeid={{code.id}}">作成</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

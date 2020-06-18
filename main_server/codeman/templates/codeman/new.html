@@ -1,0 +1,12 @@
+{% extends "codeman/base.html" %}
+{% block content %}
+
+<h1>Register Code Element</h1>
+
+<form action="" method="POST">
+{{codeelm_form.as_p}}
+{% csrf_token %}
+<input type="submit" value="Submit"/>
+</form>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "codeman/base.html" %}
+{% block content %}
+
+<h1>View Code</h1>
+
+<h4>title</h4>
+<input type="text" value="{{codeelm.title}}" disabled="true" style="color: black"/>
+
+<h4>Code</h4>
+<textarea rows="20" disabled="true" style="color: black; width: 50%;">{{codeelm.code}}</textarea>
+
+<h4>Entries</h4>
+{% include "codeman/entries_table.html" %}
+
+<hr>
+<a href="edit">編集</a>
+<a href="entry">登録</a>
+<a href="exec">実行</a>
+<a href="exec_local">実行(Local)</a>
+<a href="/codeman/">戻る</a>
+
+{% endblock %}
