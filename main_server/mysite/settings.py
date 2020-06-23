@@ -25,7 +25,7 @@ SECRET_KEY = '83560g-in#tzc2%cs2t*n5$)*8j@0idr!++#5%$d^t%*(g!(z!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '35.230.92.195']
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -88,20 +88,6 @@ DATABASES = {
     }
 }
 
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eds_db',
-        'USER': 'djangoman',
-        'PASSWORD': '(::)Django0123',
-        'HOST': 'localhost',
-        'PORT': '3306'
-
-
-    }
-}
-"""
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
