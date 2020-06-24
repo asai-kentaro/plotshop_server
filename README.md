@@ -8,7 +8,7 @@ Client repository.:[github page](https://github.com/asai-kentaro/plotshop_client
 ## Development
 
 ```
-pip -r requirements.txt
+pip3 -r requirements.txt
 ```
 
 ## Deployment
@@ -19,7 +19,7 @@ python3 manager.py runserver
 ```
 
 ## Usage
-1. Deploy server on localhost.(see deployment)
+1. Deploy django server on localhost.(see deployment)
 2. Access [http://localhost:8000/codeman](http://localhost:8000/codeman)
-3. Select code document title from code list.
-4. Write code, add visualization annotation and click "RUN" button.
+3. Select code title from code list.
+4. Write python code and add visualization annotation on Web browser, and click "RUN" button!
