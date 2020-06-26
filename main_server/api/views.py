@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from codeman.models import CodeElement, CodeMeta
-from dataman.models import File, FileCodeLink, DataChank
+from dataman.models import File, DataChank
 from _code.code_executor import CodeExecutor
 
 import os
@@ -32,24 +32,6 @@ def test(request):
 
     res = {
         "test": "get"
-    }
-    return JsonResponse(res)
-
-@csrf_exempt
-def kmeans(request):
-    data = JSONParser().parse(request)
-    two_means = cluster.MiniBatchKMeans(n_clusters=data['clu_num'])
-    res = {
-        "labels": two_means.fit(data['data']).labels_.tolist()
-    }
-    return JsonResponse(res)
-
-@csrf_exempt
-def dbscan(request):
-    data = JSONParser().parse(request)
-    DBScan = cluster.DBSCAN(eps=data['eps'])
-    res = {
-        "labels": DBScan.fit(data['data']).labels_.tolist()
     }
     return JsonResponse(res)
 
@@ -229,19 +211,6 @@ def load_code(request, code_id):
     res = {
         "code_id": code_id,
         "code": codeelm.code,
-    }
-    return JsonResponse(res)
-
-def list_data(request, code_id):
-    fcl = FileCodeLink.objects.filter(code=code_id).all()
-    datalist = []
-    for link in fcl:
-        datalist.append({
-            "id": link.file.id,
-            "name": link.file.file.name,
-        })
-    res = {
-        "linkdata": datalist
     }
     return JsonResponse(res)
 

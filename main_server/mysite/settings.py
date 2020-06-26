@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'api',
     'cms',
     'dist',
-    'blog',
     'codeman',
     'dataman',
     'rest_framework',

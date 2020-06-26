@@ -1,18 +1,11 @@
-from codeman.models import CodeElement, CodeMeta
-from dataman.models import File, FileCodeLink, DataChank
-
-import os
-import subprocess
 import sys
-from io import StringIO
 import contextlib
 import json
-import csv
 from io import TextIOWrapper, StringIO
-
 import numpy as np
 import pandas as pd
-from sklearn import cluster
+
+from dataman.models import File, DataChank
 
 class CodeExecutor:
     _unique_instance = None

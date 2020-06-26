@@ -7,7 +7,7 @@ from rest_framework import status
 from .serializers import FileSerializer
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import File, FileCodeLink, DataChank
+from .models import File, DataChank
 from codeman.models import CodeElement
 
 
@@ -20,10 +20,6 @@ def dataupload(request):
     file_serializer = FileSerializer(data=data)
     if file_serializer.is_valid():
         file = file_serializer.save()
-        flink = FileCodeLink()
-        flink.code = CodeElement.objects.get(id=int(request.POST['codeid']))
-        flink.file = File.objects.get(id=file.id)
-        flink.save()
 
         return JsonResponse({"res": "success"})
     else:
@@ -59,23 +55,3 @@ def index(request):
     }
 
     return render(request, 'dataman/index.html', context)
-
-def link(request, data_id):
-    dataset = File.objects.get(id=data_id)
-    context = {
-        "data_id": data_id,
-        "code_list": CodeElement.objects.all()
-    }
-
-    return render(request, 'dataman/link.html', context)
-
-def linkadd(request):
-    codeid = request.GET.get(key="codeid")
-    dataid = request.GET.get(key="dataid")
-
-    flink = FileCodeLink()
-    flink.code = CodeElement.objects.get(id=int(codeid))
-    flink.file = File.objects.get(id=int(dataid))
-    flink.save()
-
-    return redirect("codeman:index")
