@@ -22,4 +22,4 @@ python3 manager.py runserver
 1. Deploy django server on localhost.(see deployment)
 2. Access [http://localhost:8000/codeman](http://localhost:8000/codeman)
 3. Select code title from code list.
-4. Write python code and add visualization annotation on Web browser, and click "RUN" button!
+4. Write python code and add visualization annotation on web browser, and click "RUN" button!

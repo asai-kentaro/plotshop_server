@@ -1,3 +1,11 @@
+import subprocess
+import sys
+import contextlib
+import json
+import csv
+from io import StringIO
+import numpy as np
+import pandas as pd
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
@@ -7,71 +15,7 @@ from codeman.models import CodeElement, CodeMeta
 from dataman.models import File, DataChank
 from _code.code_executor import CodeExecutor
 
-import os
-import subprocess
-import sys
-from io import StringIO
-import contextlib
-import json
-import csv
-from io import TextIOWrapper, StringIO
-
-import numpy as np
-import pandas as pd
-from sklearn import cluster
-
 code_executor = CodeExecutor.get_instance()
-
-@csrf_exempt
-def test(request):
-    if(request.method == 'POST'):
-        res = {
-            "test": "post"
-        }
-        return JsonResponse(res)
-
-    res = {
-        "test": "get"
-    }
-    return JsonResponse(res)
-
-def do_run(request):
-    # 別プロセス（マシン）上のPython Kernelで実行できるようにする
-    # execだと関数宣言など諸々限界がある
-    print("RUN")
-    data = JSONParser().parse(request)
-
-    cmd = "python -"
-    proc = subprocess.Popen(cmd.strip().split(" "),
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        encoding='utf-8')
-    stdout_val = proc.communicate(data['codes'][0])[0]
-    proc.wait()
-
-    """ 10秒実行したら終了するプログラム
-    cmd = "sleep 30"
-    proc = subprocess.Popen([cmd], shell=True)
-    sleep(10)
-    proc.terminate()
-    """
-
-    """ 入出力をpipeする
-    cmd1 = "ls -lt"
-    cmd2 = "head -n 5"
-    p1 = subprocess.Popen(cmd1.strip().split(" "), stdout=subprocess.PIPE)
-    p2 = subprocess.Popen(cmd2.strip().split(" "), stdin=p1.stdout)
-    p1.stdout.close()
-    output = p2.communicate()[0]
-    print(output)
-    """
-
-    res = {
-        "status": "executed",
-        "value": stdout_val,
-    }
-    return JsonResponse(res)
 
 @csrf_exempt
 def do_exec_local(request):
