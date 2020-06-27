@@ -1,3 +1,6 @@
+#
+# Data management
+#
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from rest_framework.views import APIView

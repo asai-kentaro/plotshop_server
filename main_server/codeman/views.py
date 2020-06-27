@@ -1,3 +1,6 @@
+#
+# Code management
+#
 from django.shortcuts import render, redirect
 from .forms import CodeElementForm
 from .models import CodeElement
