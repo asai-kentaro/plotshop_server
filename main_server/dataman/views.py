@@ -10,7 +10,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import File, DataChank
 from codeman.models import CodeElement
 
-
 def dataupload(request):
     data = {
         'remark': request.POST['remark'],

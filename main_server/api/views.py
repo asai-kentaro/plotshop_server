@@ -13,103 +13,18 @@ from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from codeman.models import CodeElement, CodeMeta
 from dataman.models import File, DataChank
-from _code.code_executor import CodeExecutor
+from _code.code_executor_breakout import CodeExecutorBreakout
+from _code.code_executor_continue import CodeExecutorContinue
 
-code_executor = CodeExecutor.get_instance()
+code_executor_breakout = CodeExecutorBreakout.get_instance()
+code_executor_continue = CodeExecutorContinue.get_instance()
 
 @csrf_exempt
-def do_exec_local(request):
-    def printStderr(msg):
-        sys.stderr.write(msg)
-
+def exec_code_with_continue(request):
     if(request.method == 'POST'):
         data = JSONParser().parse(request)
-        out_var = {}
-        env_l = {}
-
-        def ___setOutputTargetVar(key):
-            df = env_l[key]
-            out_var[key] = {
-                "head": df.columns,
-                "data": df.values,
-            }
-
-        def ___clearDataChank(key):
-            try:
-                dc = DataChank.objects.get(name=key + "_dc").delete()
-            except:
-                pass
-
-        def ___loadDataChank(key):
-            try:
-                dc = DataChank.objects.get(name=key + "_dc")
-            except:
-                return
-            dc.data = dc.data.replace("'", '"')
-            jsonData = json.loads(dc.data)
-            env_l[key] = pd.DataFrame(jsonData['data'])
-            env_l[key].columns = jsonData['head']
-
-        env_g = {
-            "___setOutputTargetVar": ___setOutputTargetVar,
-            "___loadDataChank": ___loadDataChank,
-            "___clearDataChank": ___clearDataChank,
-        }
-        codes = data['codes']
-
-        # jsonize return value (e.g. np.array to list)
-        def jsonizer(obj):
-            if isinstance(obj, list):
-                #print("-list")
-                for i in range(len(obj)):
-                    obj[i] = jsonizer(obj[i])
-                return obj
-            elif isinstance(obj, dict):
-                #print("-dict")
-                for k, v in obj.items():
-                    obj[k] = jsonizer(v)
-                return obj
-            else:
-                if obj.__class__ == np.ndarray:
-                    #print("-NP")
-                    return obj.tolist()
-                elif obj.__class__ == pd.Series:
-                    #print("-SR")
-                    return obj.as_matrix().tolist()
-                elif obj.__class__ == pd.DataFrame:
-                    return obj.as_matrix().tolist()
-                elif obj.__class__ == pd.Index:
-                    return obj.tolist()
-                else:
-                    return obj
-
-        @contextlib.contextmanager
-        def stdoutIO(stdout=None):
-            old = sys.stdout
-            if stdout is None:
-                stdout = StringIO()
-            sys.stdout = stdout
-            yield stdout
-            sys.stdout = old
-
-        with stdoutIO() as s:
-            codes = data['codes']
-            for code in codes:
-                exec(code, env_g, env_l)
-
-        json_res = {}
-        for k, v in out_var.items():
-            try:
-                v = jsonizer(v)
-                json.dumps(v)
-                json_res[k] = v
-            except:
-                print("[error] jsoninzer")
-                pass
-        res = {
-            "status": "executed",
-            "res": { "val": s.getvalue(), "out_vars": json_res },
-        }
+        codes = data["codes"]
+        res = code_executor_continue.exec_code(codes)
         resp = {
             "response": res,
             "error": "",
@@ -129,13 +44,13 @@ def exec_code_with_breakout(request):
         data = JSONParser().parse(request)
         type = data["type"]
         if type == "code_set":
-            res = code_executor.set_breakout_code(data["codes"])
+            res = code_executor_breakout.set_breakout_code(data["codes"])
             resp = {
                 "response": res,
                 "error": "",
             }
         if type == "progress_breakout":
-            res = code_executor.progress_breakout_code()
+            res = code_executor_breakout.progress_breakout_code()
             resp = {
                 "response": res,
                 "error": "",
@@ -187,8 +102,6 @@ def load_csv(request):
 def post_meta(request, code_id):
     if(request.method == 'POST'):
         #data = json.loads(request.body)
-
-
         codeMeta = CodeMeta()
         codeMeta.code = CodeElement.objects.get(id=code_id)
         codeMeta.meta = request.body.decode('utf-8')

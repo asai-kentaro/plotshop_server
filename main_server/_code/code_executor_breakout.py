@@ -7,7 +7,8 @@ import pandas as pd
 
 from dataman.models import File, DataChank
 
-class CodeExecutor:
+# code executor for breakout mode
+class CodeExecutorBreakout:
     _unique_instance = None
 
     breakout_idx = None
