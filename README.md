@@ -11,13 +11,13 @@ Client repository[github page](https://github.com/asai-kentaro/plotshop_client)
 ## Functions
 
 ### Execute Python Code on WebBrowser
-![plotshop_execcode](/docs/img/plotshop_execcode.jpg width=50%)
+<img src="/docs/img/plotshop_execcode.jpg" width=50%>
 
 ### Direct Variables Visualization
-![plotshop_execcode](/docs/img/plotshop_variablesvis.png width=50%)
+<img src="/docs/img/plotshop_variablesvis.png" width=50%>
 
 ### Bi-directional Programming Environment
-![plotshop_execcode](/docs/img/plotshop_bi-direct.jpg width=50%)
+<img src="/docs/img/plotshop_bi-direct.jpg" width=50%>
 
 
 ## Development
