@@ -1,11 +1,21 @@
 # Plotshop Server
 
+![plotshop_overview](/docs/img/plotshop_overview.jpg)
+
 About Plotshop?
 [Project Page](https://asai-kentaro.github.io/plotshop_server/)
 
-Client repository.:[github page](https://github.com/asai-kentaro/plotshop_client)
+Client repository[github page](https://github.com/asai-kentaro/plotshop_client)
 
-![overview](/docs/img/plotshop_overview.jpg)
+## Functions
+#### Execute Python Code on WebBrowser
+![plotshop_execcode](/docs/img/plotshop_execcode.jpg)
+
+#### Direct Variables Visualization
+![plotshop_execcode](/docs/img/plotshop_variablesvis.png)
+
+#### Bi-directional Programming Environment
+![plotshop_execcode](/docs/img/plotshop_bi-direct.jpg)
 
 ## Development
 
