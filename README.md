@@ -5,6 +5,8 @@ About Plotshop?
 
 Client repository.:[github page](https://github.com/asai-kentaro/plotshop_client)
 
+![overview](/docs/img/plotshop_overview.jpg)
+
 ## Development
 
 ```
