@@ -1,5 +1,5 @@
 #
-# Code management
+# Code management (template code can be saved)
 #
 from django.shortcuts import render, redirect
 from .forms import CodeElementForm

@@ -47268,18 +47268,18 @@ var ScatterPlot = function (_Component) {
       });
       valueVarIdx = valueVarIdx == -1 ? 1 : valueVarIdx;
 
-      var group = [];
-      for (var i = 0; i < dataset.data.length; i++) {
-        group.push(Number(dataset.data[i][valueVarIdx]));
+      var _group = [];
+      for (var _i = 0; _i < dataset.data.length; _i++) {
+        _group.push(Number(dataset.data[_i][valueVarIdx]));
       }
-      this._group = group;
+      this._group = _group;
     } else {
       if (data.length == this.props.selected_group.length) {
-        var group = [];
-        for (var i = 0; i < this.props.selected_group.length; i++) {
-          group.push(this.props.selected_group[i]);
+        var _group2 = [];
+        for (var _i2 = 0; _i2 < this.props.selected_group.length; _i2++) {
+          _group2.push(this.props.selected_group[_i2]);
         }
-        this._group = group;
+        this._group = _group2;
       } else {
         this.eraseGroup();
       }
@@ -47318,18 +47318,18 @@ var ScatterPlot = function (_Component) {
     if (!selplots[0]) return;
 
     var res = [selplots[0][0], selplots[0][0], selplots[0][1], selplots[0][1]];
-    for (var i = 0; i < selplots.length; i++) {
-      if (res[0] > selplots[i][0]) {
-        res[0] = selplots[i][0];
+    for (var _i3 = 0; _i3 < selplots.length; _i3++) {
+      if (res[0] > selplots[_i3][0]) {
+        res[0] = selplots[_i3][0];
       }
-      if (res[1] > selplots[i][1]) {
-        res[1] = selplots[i][1];
+      if (res[1] > selplots[_i3][1]) {
+        res[1] = selplots[_i3][1];
       }
-      if (res[2] < selplots[i][0]) {
-        res[2] = selplots[i][0];
+      if (res[2] < selplots[_i3][0]) {
+        res[2] = selplots[_i3][0];
       }
-      if (res[3] < selplots[i][1]) {
-        res[3] = selplots[i][1];
+      if (res[3] < selplots[_i3][1]) {
+        res[3] = selplots[_i3][1];
       }
     }
 
@@ -47374,14 +47374,16 @@ var ScatterPlot = function (_Component) {
     var axisX = d3.axisBottom().scale(x);
     var axisY = d3.axisLeft().scale(y);
 
+    var x_val = void 0,
+        y_val = void 0;
     if (this._data.length <= 1) {
-      var x_val = [0, 100];
-      var y_val = [0, 100];
+      x_val = [0, 100];
+      y_val = [0, 100];
     } else {
-      var x_val = d3.extent(this._data, function (d) {
+      x_val = d3.extent(this._data, function (d) {
         return d[0];
       });
-      var y_val = d3.extent(this._data, function (d) {
+      y_val = d3.extent(this._data, function (d) {
         return d[1];
       });
     }
@@ -47482,11 +47484,11 @@ var ScatterPlot = function (_Component) {
       var cy = Number(d.attr("cy"));
       var mindist = (point[0] - cx) * (point[0] - cx) + (point[1] - cy) * (point[1] - cy);
       for (var i = 0; i < _self.plotDots._groups[0].length; i++) {
-        var d = d3.select(_self.plotDots._groups[0][i]);
-        var cx = Number(d.attr("cx"));
-        var cy = Number(d.attr("cy"));
+        var _d = d3.select(_self.plotDots._groups[0][i]);
+        var _cx = Number(_d.attr("cx"));
+        var _cy = Number(_d.attr("cy"));
 
-        var dis2 = (point[0] - cx) * (point[0] - cx) + (point[1] - cy) * (point[1] - cy);
+        var dis2 = (point[0] - _cx) * (point[0] - _cx) + (point[1] - _cy) * (point[1] - _cy);
         if (dis2 < mindist) {
           idx = i;
           mindist = dis2;
@@ -47647,16 +47649,16 @@ var ScatterPlot = function (_Component) {
         var: [0, 0]
       };
 
-      for (var i = 0; i < targetPoint.length; i++) {
-        res.avg[0] += targetPoint[i][0];
-        res.avg[1] += targetPoint[i][1];
+      for (var _i4 = 0; _i4 < targetPoint.length; _i4++) {
+        res.avg[0] += targetPoint[_i4][0];
+        res.avg[1] += targetPoint[_i4][1];
       }
       res.avg[0] = res.avg[0] / targetPoint.length;
       res.avg[1] = res.avg[1] / targetPoint.length;
 
-      for (var i = 0; i < targetPoint.length; i++) {
-        res.var[0] += (targetPoint[i][0] - res.avg[0]) * (targetPoint[i][0] - res.avg[0]);
-        res.var[1] += (targetPoint[i][1] - res.avg[1]) * (targetPoint[i][1] - res.avg[1]);
+      for (var _i5 = 0; _i5 < targetPoint.length; _i5++) {
+        res.var[0] += (targetPoint[_i5][0] - res.avg[0]) * (targetPoint[_i5][0] - res.avg[0]);
+        res.var[1] += (targetPoint[_i5][1] - res.avg[1]) * (targetPoint[_i5][1] - res.avg[1]);
       }
       res.var[0] = res.var[0] / targetPoint.length;
       res.var[1] = res.var[1] / targetPoint.length;
@@ -47738,7 +47740,7 @@ var ScatterPlot = function (_Component) {
 
       var counter = 0;
       var dom = d3.max(dist_ary);
-      for (var i = 0; i < sel_count; i++) {
+      for (var _i6 = 0; _i6 < sel_count; _i6++) {
         var norm = getNorm(dom);
         var min_idx = -1;
         var min_dist = dom * 10000000;
@@ -47805,16 +47807,16 @@ var ScatterPlot = function (_Component) {
       erase_eph_plots();
       reset_no_color();
       if (pd_ratio > 1) {
-        for (var i = 0; i < pd_ratio * cnt; i++) {
+        for (var _i7 = 0; _i7 < pd_ratio * cnt; _i7++) {
           _self._data.push(getNormDist2(mu, dum));
           _self._group.push(_self.eph_color);
         }
       } else {
         var idxlist = _self.getSelIdxNumber();
         var upper = (1 - pd_ratio) * cnt - 1;
-        for (var i = 0; i < upper; i++) {
+        for (var _i8 = 0; _i8 < upper; _i8++) {
           for (var t = 0; t < idxlist.length; t++) {
-            if (idxlist[t] == i) {
+            if (idxlist[t] == _i8) {
               _self._group[t] = _self.no_color;
             }
           }
@@ -47896,11 +47898,11 @@ var ScatterPlot = function (_Component) {
       } else if (_self.state.cursorType == "search") {
         moveInfoPanel(pointer);
       } else if (_self.props.is_manipulating && _self.state.cursorType == "rotate") {
-        var pointer = d3.mouse(plotArea.node());
-        var dy = _self.mxy_origin[1] - pointer[1];
+        var _pointer = d3.mouse(plotArea.node());
+        var dy = _self.mxy_origin[1] - _pointer[1];
         var rot = 0;
         var center = [(_self.bbox[0] + _self.bbox[2]) / 2, (_self.bbox[1] + _self.bbox[3]) / 2];
-        if (pointer[0] < center[0]) {
+        if (_pointer[0] < center[0]) {
           if (dy > 0) rot = 2 * dy;
           if (dy <= 0) rot = 2 * dy;
         } else {
@@ -74371,7 +74373,7 @@ var dataset = function dataset() {
         }
       }
       var group = [];
-      for (var i = 0; i < data.length; i++) {
+      for (var _i = 0; _i < data.length; _i++) {
         group.push(0);
       }
       return {
@@ -74402,8 +74404,8 @@ var dataset = function dataset() {
       break;
     case "ADD_COL_DATA":
       state = Object.assign({}, state);
-      for (var i = 0; i < action.data.length; i++) {
-        state.data[i][state.variables.length] = action.data[i];
+      for (var _i2 = 0; _i2 < action.data.length; _i2++) {
+        state.data[_i2][state.variables.length] = action.data[_i2];
       }
       state.variables.push(action.name);
       state.vartypes.push("num");
@@ -74456,16 +74458,17 @@ var chartManipulations = function chartManipulations() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
+  var _state = void 0;
   switch (action.type) {
     case "EMPTY_MANIPULATION":
       return [];
       break;
     case "SELECT_DATA_FROM_CHART":
-      var _state = uniqueVariableFilter([].concat(state, [action.manipulation]));
+      _state = uniqueVariableFilter([].concat(state, [action.manipulation]));
       return _state;
       break;
     case "CHANGE_DATASET_BY_PLOT":
-      var _state = uniqueVariableFilter([].concat(state, [action.manipulation]));
+      _state = uniqueVariableFilter([].concat(state, [action.manipulation]));
       return _state;
       break;
   }
@@ -85204,6 +85207,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var $ = __webpack_require__(29);
 
+/*
+ * (Structure)
+ * CoderStudio
+ * + CodeEditor
+ * + ChartDashboard
+ * + CodeConsole
+ *
+ */
 var CoderStudio = function (_React$Component) {
   _inherits(CoderStudio, _React$Component);
 
@@ -85459,6 +85470,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var $ = __webpack_require__(29);
 
+/*
+ * Coding panel (Left side in main area)
+ */
+
 var CodeEditor = function (_React$Component) {
   _inherits(CodeEditor, _React$Component);
 
@@ -85695,20 +85710,20 @@ var CodeEditor = function (_React$Component) {
 
         _this5.props.setChartEmpty();
         var marks = _this5.marks;
-        for (var i = 0; i < marks.length; i++) {
-          if (res.res.out_vars[marks[i].val]) {
+        for (var _i = 0; _i < marks.length; _i++) {
+          if (res.res.out_vars[marks[_i].val]) {
             if (res.res.breakout) {
-              if (i == res.res.breakout.index - 1) {
-                if (marks[i].line) {
-                  highlightLine(marks[i].line);
+              if (_i == res.res.breakout.index - 1) {
+                if (marks[_i].line) {
+                  highlightLine(marks[_i].line);
                 }
-                _this5.props.handleCodeLocalVal(marks[i].panelTitle, marks[i], res.res.out_vars[marks[i].val]);
+                _this5.props.handleCodeLocalVal(marks[_i].panelTitle, marks[_i], res.res.out_vars[marks[_i].val]);
               }
             } else {
-              if (marks[i].line) {
-                highlightLine(marks[i].line, "mark-var-yellow");
+              if (marks[_i].line) {
+                highlightLine(marks[_i].line, "mark-var-yellow");
               }
-              _this5.props.handleCodeLocalVal(marks[i].panelTitle, marks[i], res.res.out_vars[marks[i].val]);
+              _this5.props.handleCodeLocalVal(marks[_i].panelTitle, marks[_i], res.res.out_vars[marks[_i].val]);
             }
           }
         }
@@ -85985,6 +86000,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/*
+ * Charts display panel (Right side in main area)
+ */
 var ChartDashboard = function (_React$Component) {
   _inherits(ChartDashboard, _React$Component);
 
@@ -86409,7 +86427,10 @@ var LineChart = function (_Component) {
       }
     }
 
-    var minX, maxX, minY, maxY;
+    var minX = void 0,
+        maxX = void 0,
+        minY = void 0,
+        maxY = void 0;
     minX = _.minBy(data[0], function (d) {
       return d.x;
     }).x;
@@ -86423,17 +86444,17 @@ var LineChart = function (_Component) {
       return d.y;
     }).y;
 
-    for (var i = 1; i < data.length; i++) {
-      minX = _.min([minX, _.minBy(data[i], function (d) {
+    for (var _i = 1; _i < data.length; _i++) {
+      minX = _.min([minX, _.minBy(data[_i], function (d) {
         return d.x;
       }).x]);
-      maxX = _.max([maxX, _.maxBy(data[i], function (d) {
+      maxX = _.max([maxX, _.maxBy(data[_i], function (d) {
         return d.x;
       }).x]);
-      minY = _.min([minY, _.minBy(data[i], function (d) {
+      minY = _.min([minY, _.minBy(data[_i], function (d) {
         return d.y;
       }).y]);
-      maxY = _.max([maxY, _.maxBy(data[i], function (d) {
+      maxY = _.max([maxY, _.maxBy(data[_i], function (d) {
         return d.y;
       }).y]);
     }
@@ -100891,8 +100912,8 @@ var BarChart = function (_Component) {
       return d.label;
     }));
     var max = data[0].value[0];
-    for (var i = 0; i < data.length; i++) {
-      var tmp = _.maxBy(data[i].value);
+    for (var _i = 0; _i < data.length; _i++) {
+      var tmp = _.maxBy(data[_i].value);
       if (max < tmp) {
         max = tmp;
       }

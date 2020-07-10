@@ -7,7 +7,10 @@ import pandas as pd
 
 from dataman.models import File, DataChank
 
+#
 # code executor for continue mode
+# - Code is continuously executed.
+#
 class CodeExecutorContinue:
     _unique_instance = None
 
